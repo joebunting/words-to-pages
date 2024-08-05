@@ -1,12 +1,24 @@
 .wpc-calculator {
-    max-width: 500px;
-    margin: 20px auto;
+    max-width: 600px;
+    margin: 0 auto;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
 
-.wpc-calculator input,
+.wpc-calculator label {
+    display: block;
+    margin-top: 10px;
+}
+
+.wpc-calculator input[type="number"] {
+    width: 200px;
+    font-size: 17px;
+    padding: 15px 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
 .wpc-calculator textarea,
 .wpc-calculator button {
     display: block;
@@ -24,6 +36,31 @@
 
 .wpc-calculator button:hover {
     background-color: #f93;
+}
+
+#result {
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.wpc-calculator .result-box {
+    background-color: #f0f8ff;
+    border: 2px solid #4682b4;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.wpc-calculator.result-box h3 {
+    margin-top: 0;
+    color: #4682b4;
+}
+
+.wpc-calculator.result-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2e8b57;
 }
 
 .hidden {

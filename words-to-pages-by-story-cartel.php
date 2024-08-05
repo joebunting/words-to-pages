@@ -21,8 +21,9 @@ require_once plugin_dir_path(__FILE__) . 'includes/shortcodes.php';
 
 // Enqueue scripts and styles
 function wpc_enqueue_scripts() {
-    wp_enqueue_style('wpc-style', plugin_dir_url(__FILE__) . 'assets/css/style.css');
-    wp_enqueue_script('wpc-script', plugin_dir_url(__FILE__) . 'assets/js/script.js', array('jquery'), '1.0', true);
+    wp_enqueue_style('wpc-style', plugin_dir_url(__FILE__) . 'assets/css/style.css', array(), WORDS_TO_PAGES_VERSION);
+    wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css', array(), '5.15.3');
+    wp_enqueue_script('wpc-script', plugin_dir_url(__FILE__) . 'assets/js/script.js', array('jquery'), WORDS_TO_PAGES_VERSION, true);
 }
 add_action('wp_enqueue_scripts', 'wpc_enqueue_scripts');
 
