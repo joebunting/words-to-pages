@@ -12,33 +12,123 @@ function w2p_shortcode($atts) {
         <div class="w2p-calculator">
             <h3>Word Count to Page Count</h3>
             <?php if (empty($atts['type'])): ?>
-                <label><input type="radio" name="w2p-type" value="simple" checked> Simple</label>
-                <label><input type="radio" name="w2p-type" value="advanced"> Advanced</label>
-                <label><input type="radio" name="w2p-type" value="analyzer"> Analyzer</label>
+                <div class="w2p-calculator-options">
+                    <label><input type="radio" name="w2p-type" value="word-to-page-simple" checked> Words to Pages (Simple)</label>
+                    <label><input type="radio" name="w2p-type" value="word-to-page-advanced"> Words to Pages (Advanced)</label>
+                    <label><input type="radio" name="w2p-type" value="page-to-word-simple"> Pages to Words (Simple)</label>
+                    <label><input type="radio" name="w2p-type" value="page-to-word-advanced"> Pages to Words (Advanced)</label>
+                    <label><input type="radio" name="w2p-type" value="analyzer"> Full Manuscript Calculator</label>
+                </div>
             <?php endif; ?>
 
             <div id="simple-calculator" class="calculator">
-                <input type="number" id="w2p-word-count" placeholder="Enter word count">
-                <input type="number" id="w2p-words-per-page" placeholder="Words per page (default: 250)">
-                <button id="w2p-calculate-simple">Calculate</button>
-                <p id="w2p-result-simple"></p>
+                <label><strong>Enter your word count</strong></label>
+                <input type="number" id="w2p-word-count" placeholder="Word count">
+                <label><strong>How many words per page? (default: 250)</strong></label>
+                <input type="number" id="w2p-words-per-page" placeholder="Words per page=" value="250">
+                <button id="w2p-calculate-simple">Calculate »</button>
+                <div class="result-box">
+                    <h3>Result</h3>
+                    <p id="w2p-result-simple"></p>
+                </div>
             </div>
 
-            <div id="advanced-calculator" class="calculator hidden">
+            <div id="advanced-calculator" class="hidden">
+                <label><strong>Enter your word count</strong></label>
                 <input type="number" id="w2p-word-count-adv" placeholder="Enter word count">
-                <input type="number" id="w2p-page-size" placeholder="Page size (in inches)">
-                <input type="number" id="w2p-font-size" placeholder="Font size (in points)">
-                <input type="number" id="w2p-line-height" placeholder="Line height (in points)">
-                <button id="w2p-calculate-advanced">Calculate</button>
-                <p id="w2p-result-advanced"></p>
+                <label><strong>Page size</strong></label>
+                <select id="w2p-page-size">
+                    <option value="5x8" selected>Trade Paperback 5" x 8"</option>
+                    <option value="5.5x8.5">Digest 5.5" x 8.5"</option>
+                    <option value="6x9">US Trade 6" x 9"</option>
+                    <option value="7x10">Textbook 7" x 10"</option>
+                    <option value="8.5x11">Letter 8.5" x 11"</option>
+                </select>
+                <label><strong>Font size (in points)</strong></label>
+                <select id="w2p-font-size">
+                    <option value="10">Small (10 pt)</option>
+                    <option value="11">Smaller (11 pt)</option>
+                    <option value="12" selected>Normal (12 pt)</option>
+                    <option value="14">Large (14 pt)</option>
+                </select>
+                <label><strong>Line height</strong></label>
+                <select id="w2p-line-height">
+                    <option value="1.2">Compact (1.2x)</option>
+                    <option value="1.5" selected>Standard (1.5x)</option>
+                    <option value="1.8">Spacious (1.8x)</option>
+                </select>
+                <label><strong>Margins</strong></label>
+                <select id="w2p-margins">
+                    <option value="0.5">Narrow (0.5 inches)</option>
+                    <option value="0.75" selected>Normal (0.75 inches)</option>
+                    <option value="1">Wide (1 inch)</option>
+                </select>
+                <button id="w2p-calculate-advanced" class="w2p-calculator-button">Calculate »</button>
+                <div class="result-box">
+                    <h3>Result</h3>
+                    <p id="w2p-result-advanced" class="w2p-calculator-result"></p>
+                </div>
             </div>
 
             <div id="analyzer-calculator" class="calculator hidden">
-                <textarea id="w2p-text-input" placeholder="Enter text to analyze"></textarea>
-                <button id="w2p-analyze-text">Analyze</button>
-                <p id="w2p-text-result"></p>
+                <p>Copy and paste your entire manuscript below, then click "Analyze" to get your estimated word count and book page numbers.</p>
+                <p><em>Your text will not be stored. This is for word count checking only.</em></p>
+                <textarea id="w2p-text-input" placeholder="Copy and paste your complete manuscript to analyze" style="height: 400px;"></textarea>
+                <button id="w2p-analyze-text">Analyze »</button>
+                <div class="result-box">
+                    <h3>Result</h3>
+                    <p id="w2p-text-result"></p>
+                </div>
             </div>
         </div>
+        <div id="page-to-word-simple-calculator" class="calculator hidden">
+    <label><strong>Enter your page count</strong></label>
+    <input type="number" id="w2p-page-count-simple" placeholder="Page count">
+    <label><strong>How many words per page? (default: 250)</strong></label>
+    <input type="number" id="w2p-words-per-page-simple" placeholder="Words per page" value="250">
+    <button id="w2p-calculate-page-to-word-simple">Calculate »</button>
+    <div class="result-box">
+        <h3>Result</h3>
+        <p id="w2p-result-page-to-word-simple"></p>
+    </div>
+</div>
+
+<div id="page-to-word-advanced-calculator" class="calculator hidden">
+    <label><strong>Enter your page count</strong></label>
+    <input type="number" id="w2p-page-count-adv" placeholder="Page count">
+    <label><strong>Page size</strong></label>
+    <select id="w2p-page-size-ptw">
+        <option value="5x8" selected>Trade Paperback 5" x 8"</option>
+        <option value="5.5x8.5">Digest 5.5" x 8.5"</option>
+        <option value="6x9">US Trade 6" x 9"</option>
+        <option value="7x10">Textbook 7" x 10"</option>
+        <option value="8.5x11">Letter 8.5" x 11"</option>
+    </select>
+    <label><strong>Font size (in points)</strong></label>
+    <select id="w2p-font-size-ptw">
+        <option value="10">Small (10 pt)</option>
+        <option value="11">Smaller (11 pt)</option>
+        <option value="12" selected>Normal (12 pt)</option>
+        <option value="14">Large (14 pt)</option>
+    </select>
+    <label><strong>Line height</strong></label>
+    <select id="w2p-line-height-ptw">
+        <option value="1.2">Compact (1.2x)</option>
+        <option value="1.5" selected>Standard (1.5x)</option>
+        <option value="1.8">Spacious (1.8x)</option>
+    </select>
+    <label><strong>Margins</strong></label>
+    <select id="w2p-margins-ptw">
+        <option value="0.5">Narrow (0.5 inches)</option>
+        <option value="0.75" selected>Normal (0.75 inches)</option>
+        <option value="1">Wide (1 inch)</option>
+    </select>
+    <button id="w2p-calculate-page-to-word-advanced" class="w2p-calculator-button">Calculate »</button>
+    <div class="result-box">
+        <h3>Result</h3>
+        <p id="w2p-result-page-to-word-advanced" class="w2p-calculator-result"></p>
+    </div>
+</div>
         <div class="twp-attribution hidden">
             <p>Powered by <a href="https://thewritepractice.com" target="_blank">The Write Practice</a></p>
         </div>

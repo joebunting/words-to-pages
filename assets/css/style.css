@@ -1,68 +1,142 @@
-.wpc-calculator {
+.w2p-calculator {
     max-width: 600px;
     margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 30px;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
 }
 
-.wpc-calculator label {
+.w2p-calculator label {
     display: block;
     margin-top: 10px;
 }
 
-.wpc-calculator input[type="number"] {
-    width: 200px;
-    font-size: 17px;
-    padding: 15px 20px;
-    border-radius: 10px;
-    margin-bottom: 10px;
+.w2p-calculator-options {
+    margin-bottom: 25px;
 }
 
-.wpc-calculator textarea,
-.wpc-calculator button {
+.w2p-calculator input[type="number"],
+.w2p-calculator select {
+    width: 200px;
+    font-size: 17px;
+    padding: 15px 20px; /* Increased padding */
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    -moz-appearance: none; /* Firefox */
+    -webkit-appearance: none; /* Chrome, Safari */
+    appearance: none; /* Default */
+}
+
+.w2p-calculator select {
+    background: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center;
+    background-size: 12px;
+    padding-right: 30px; /* Adjust padding to accommodate the custom arrow */
+    width: 300px;
+}
+
+.w2p-calculator input[type="number"]::-webkit-outer-spin-button,
+.w2p-calculator input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.w2p-calculator input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.w2p-calculator textarea {
     display: block;
     margin-bottom: 10px;
     padding: 5px;
+    padding: 15px 28px;
+    border-radius: 5px;
+    font-size: 17px;
+    width: 100%;
 }
 
-.wpc-calculator button {
+.w2p-calculator button {
     background-color: #f63;
     color: white;
     border: none;
-    padding: 10px;
+    padding: 15px 35px;
     cursor: pointer;
+    border-radius: 25px;
+    font-size: 17px;
+    clear: both; 
+    display: block; 
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
 }
 
-.wpc-calculator button:hover {
+.w2p-calculator-button:hover {
     background-color: #f93;
 }
 
-#result {
+#result, #kdpResult {
     margin-top: 20px;
     font-weight: bold;
 }
 
-.wpc-calculator .result-box {
+.w2p-calculator .result-box {
     background-color: #f0f8ff;
-    border: 2px solid #4682b4;
-    border-radius: 10px;
-    padding: 15px;
-    margin-top: 20px;
+    border: none;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 30px;
     font-size: 18px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.wpc-calculator.result-box h3 {
+.w2p-calculator .result-box h3 {
     margin-top: 0;
     color: #4682b4;
 }
 
-.wpc-calculator.result-value {
+.w2p-calculator .result-value {
     font-size: 24px;
     font-weight: bold;
     color: #2e8b57;
 }
 
-.hidden {
+.hidden, .result-box {
     display: none;
+}
+
+.twp-attribution {
+    text-align: right;
+    color: #666;
+    margin-top: 20px;
+    max-width: 600px;
+}
+
+/* Style for the result box when it is shown */
+.result-box.show {
+    display: block;
+}
+.progress-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: conic-gradient(#4682b4 0deg, #f0f8ff 0deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.progress-circle::before {
+    content: attr(data-value) '%';
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    font-weight: bold;
+    color: #4682b4;
 }
