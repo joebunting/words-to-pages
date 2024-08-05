@@ -1,4 +1,9 @@
 jQuery(document).ready(function($) {
+    // Display Attribution 
+    if (window.location.hostname !== 'thewritepractice.com') {
+        $(".twp-attribution").removeClass('hidden');
+    }
+
     $('#wpc-calculate-simple').on('click', function() {
         var wordCount = $('#wpc-word-count').val();
         var wordsPerPage = $('#wpc-words-per-page').val() || 250;
