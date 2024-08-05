@@ -16,7 +16,7 @@ function w2p_shortcode($atts) {
                     <label><input type="radio" name="w2p-type" value="word-to-page-simple" checked> Words to Pages (Simple)</label>
                     <label><input type="radio" name="w2p-type" value="word-to-page-advanced"> Words to Pages (Advanced)</label>
                     <label><input type="radio" name="w2p-type" value="page-to-word-simple"> Pages to Words (Simple)</label>
-                    <label><input type="radio" name="w2p-type" value="page-to-word-advanced"> Pages to Words (Advanced)</label>
+                    <!--<label><input type="radio" name="w2p-type" value="page-to-word-advanced"> Pages to Words (Advanced)</label>-->
                     <label><input type="radio" name="w2p-type" value="analyzer"> Full Manuscript Calculator</label>
                 </div>
             <?php endif; ?>
