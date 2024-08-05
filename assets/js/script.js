@@ -58,7 +58,7 @@ jQuery(document).ready(function($) {
         var pageCount = $('#w2p-page-count-simple').val();
         var wordsPerPage = $('#w2p-words-per-page-simple').val() || 250;
         var wordCount = pageCount * wordsPerPage;
-        $('#w2p-result-page-to-word-simple').html('<p><i class="fas fa-file-alt"></i> Estimated word count: ' + wordCount + '</p>');
+        $('#w2p-result-page-to-word-simple').html('<p><i class="fas fa-file-alt"></i> <strong>Estimated word count:</strong> ' + wordCount + ' words</p>');
         $('#w2p-result-page-to-word-simple').closest('.result-box').show();
     });
 
@@ -111,7 +111,7 @@ jQuery(document).ready(function($) {
         var wordCount = $('#w2p-word-count').val();
         var wordsPerPage = $('#w2p-words-per-page').val() || 250;
         var pageCount = Math.ceil(wordCount / wordsPerPage);
-        $('#w2p-result-simple').html('<p><i class="fas fa-book-open"></i> Estimated page count: ' + pageCount + '</p>');
+        $('#w2p-result-simple').html('<p><i class="fas fa-book-open"></i> <strong>Estimated page count:</strong> ' + pageCount + ' pages</p>');
         $('#w2p-result-simple').closest('.result-box').show();
     });
 
@@ -151,8 +151,8 @@ jQuery(document).ready(function($) {
         const result = calculatePageCount(wordCount, pageSize, fontSize, lineHeight, margins);
 
         $('#w2p-result-advanced').html(
-            `<p><i class="fas fa-book-open"></i> Estimated page count: ${result.pageCount}</p>` +
-            `<p><i class="fas fa-sort-alpha-down"></i> Average words per page: ${result.wordsPerPage}</p>`
+            `<p><i class="fas fa-book-open"></i> <strong>Estimated page count:</strong> ${result.pageCount} pages</p>` +
+            `<p><i class="fas fa-sort-alpha-down"></i> <strong>Average words per page:</strong> ${result.wordsPerPage} words</p>`
         );
         $('#w2p-result-advanced').closest('.result-box').show();
     });
@@ -164,8 +164,8 @@ jQuery(document).ready(function($) {
         const progressPercentage = Math.min(100, Math.round((wordCount / 50000) * 100));
         $('#w2p-text-result').html(
             `<div class="progress-circle" data-value="${progressPercentage}" style="background: conic-gradient(#4682b4 ${progressPercentage * 3.6}deg, #f0f8ff 0deg);"></div>` +
-            `<p><i class="fas fa-book-open"></i> Word count: ${wordCount}</p>` +
-            `<p><i class="fas fa-file-alt"></i> Estimated page count: ${pageCount}</p>`
+            `<p><i class="fas fa-book-open"></i> <strong>Word count:</strong> ${wordCount} words</p>` +
+            `<p><i class="fas fa-file-alt"></i> <strong>Estimated page count:</strong> ${pageCount} pages</p>`
         );
         $('#w2p-text-result').closest('.result-box').show();
     });
