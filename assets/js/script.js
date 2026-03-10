@@ -58,7 +58,12 @@ jQuery(document).ready(function($) {
         var pageCount = $('#w2p-page-count-simple').val();
         var wordsPerPage = $('#w2p-words-per-page-simple').val() || 250;
         var wordCount = pageCount * wordsPerPage;
-        $('#w2p-result-page-to-word-simple').html('<p><i class="fas fa-file-alt"></i> <strong>Estimated word count:</strong> ' + wordCount + ' words</p>');
+        var readingTime = calculateReadingTime(wordCount);
+        $('#w2p-result-page-to-word-simple').html(
+            '<p><i class="fas fa-file-alt"></i> <strong>Estimated word count:</strong> ' + wordCount + ' words</p>' +
+            '<p><i class="fas fa-sort-alpha-down"></i> <strong>Words per page:</strong> ' + wordsPerPage + '</p>' +
+            '<p><i class="fas fa-clock"></i> <strong>Average reading time:</strong> ' + readingTime + '</p>'
+        );
         $('#w2p-result-page-to-word-simple').closest('.result-box').show();
     });
 
@@ -104,6 +109,11 @@ jQuery(document).ready(function($) {
         };
     }
 
+    function calculateReadingTime(wordCount, wordsPerMinute = 200) {
+        const minutes = Math.ceil(wordCount / wordsPerMinute);
+        return minutes < 60 ? `${minutes} minute${minutes !== 1 ? 's' : ''}` : `${Math.floor(minutes / 60)} hour${Math.floor(minutes / 60) !== 1 ? 's' : ''} ${minutes % 60} minute${minutes % 60 !== 1 ? 's' : ''}`;
+    }
+
     // Hide result boxes initially
     $('.result-box').hide();
 
@@ -111,7 +121,12 @@ jQuery(document).ready(function($) {
         var wordCount = $('#w2p-word-count').val();
         var wordsPerPage = $('#w2p-words-per-page').val() || 250;
         var pageCount = Math.ceil(wordCount / wordsPerPage);
-        $('#w2p-result-simple').html('<p><i class="fas fa-book-open"></i> <strong>Estimated page count:</strong> ' + pageCount + ' pages</p>');
+        var readingTime = calculateReadingTime(wordCount);
+        $('#w2p-result-simple').html(
+            '<p><i class="fas fa-book-open"></i> <strong>Estimated page count:</strong> ' + pageCount + ' pages</p>' +
+            '<p><i class="fas fa-sort-alpha-down"></i> <strong>Words per page:</strong> ' + wordsPerPage + '</p>' +
+            '<p><i class="fas fa-clock"></i> <strong>Average reading time:</strong> ' + readingTime + '</p>'
+        );
         $('#w2p-result-simple').closest('.result-box').show();
     });
 
@@ -149,10 +164,12 @@ jQuery(document).ready(function($) {
         const margins = parseFloat($('#w2p-margins').val());
 
         const result = calculatePageCount(wordCount, pageSize, fontSize, lineHeight, margins);
+        const readingTime = calculateReadingTime(wordCount);
 
         $('#w2p-result-advanced').html(
             `<p><i class="fas fa-book-open"></i> <strong>Estimated page count:</strong> ${result.pageCount} pages</p>` +
-            `<p><i class="fas fa-sort-alpha-down"></i> <strong>Average words per page:</strong> ${result.wordsPerPage} words</p>`
+            `<p><i class="fas fa-sort-alpha-down"></i> <strong>Average words per page:</strong> ${result.wordsPerPage} words</p>` +
+            `<p><i class="fas fa-clock"></i> <strong>Average reading time:</strong> ${readingTime}</p>`
         );
         $('#w2p-result-advanced').closest('.result-box').show();
     });
@@ -162,10 +179,12 @@ jQuery(document).ready(function($) {
         var wordCount = text.trim().split(/\s+/).length;
         var pageCount = Math.ceil(wordCount / 250);
         const progressPercentage = Math.min(100, Math.round((wordCount / 50000) * 100));
+        const readingTime = calculateReadingTime(wordCount);
         $('#w2p-text-result').html(
             `<div class="progress-circle" data-value="${progressPercentage}" style="background: conic-gradient(#4682b4 ${progressPercentage * 3.6}deg, #f0f8ff 0deg);"></div>` +
             `<p><i class="fas fa-book-open"></i> <strong>Word count:</strong> ${wordCount} words</p>` +
-            `<p><i class="fas fa-file-alt"></i> <strong>Estimated page count:</strong> ${pageCount} pages</p>`
+            `<p><i class="fas fa-file-alt"></i> <strong>Estimated page count:</strong> ${pageCount} pages</p>` +
+            `<p><i class="fas fa-clock"></i> <strong>Average reading time:</strong> ${readingTime}</p>`
         );
         $('#w2p-text-result').closest('.result-box').show();
     });

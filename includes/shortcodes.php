@@ -26,7 +26,7 @@ function w2p_shortcode($atts) {
                 <input type="number" id="w2p-word-count" placeholder="Word count">
                 <label><strong>How many words per page? (default: 250)</strong></label>
                 <input type="number" id="w2p-words-per-page" placeholder="Words per page=" value="250">
-                <button id="w2p-calculate-simple">Calculate »</button>
+                <button id="w2p-calculate-simple" class="w2p-btn">Calculate »</button>
                 <div class="result-box">
                     <h3>Result</h3>
                     <p id="w2p-result-simple"></p>
@@ -63,7 +63,7 @@ function w2p_shortcode($atts) {
                     <option value="0.75" selected>Normal (0.75 inches)</option>
                     <option value="1">Wide (1 inch)</option>
                 </select>
-                <button id="w2p-calculate-advanced" class="w2p-calculator-button">Calculate »</button>
+                <button id="w2p-calculate-advanced" class="w2p-btn">Calculate »</button>
                 <div class="result-box">
                     <h3>Result</h3>
                     <p id="w2p-result-advanced" class="w2p-calculator-result"></p>
@@ -74,7 +74,7 @@ function w2p_shortcode($atts) {
                 <p>Copy and paste your entire manuscript below, then click "Analyze" to get your estimated word count and book page numbers.</p>
                 <p><em>Your text will not be stored. This is for word count checking only.</em></p>
                 <textarea id="w2p-text-input" placeholder="Copy and paste your complete manuscript to analyze" style="height: 400px;"></textarea>
-                <button id="w2p-analyze-text">Analyze »</button>
+                <button id="w2p-analyze-text" class="w2p-btn">Analyze »</button>
                 <div class="result-box">
                     <h3>Result</h3>
                     <p id="w2p-text-result"></p>
@@ -86,10 +86,11 @@ function w2p_shortcode($atts) {
                 <input type="number" id="w2p-page-count-simple" placeholder="Page count">
                 <label><strong>How many words per page? (default: 250)</strong></label>
                 <input type="number" id="w2p-words-per-page-simple" placeholder="Words per page" value="250">
-                <button id="w2p-calculate-page-to-word-simple">Calculate »</button>
+                <button id="w2p-calculate-page-to-word-simple" class="w2p-btn">Calculate »</button>
                 <div class="result-box">
                     <h3>Result</h3>
                     <p id="w2p-result-page-to-word-simple"></p>
+                </div>
             </div>
             <!--
             <div id="page-to-word-advanced-calculator" class="hidden">
@@ -134,7 +135,6 @@ function w2p_shortcode($atts) {
         <div class="twp-attribution hidden">
             <p>Powered by <a href="https://thewritepractice.com" target="_blank">The Write Practice</a></p>
         </div>
-    </div>
     <?php
     return ob_get_clean();
 }
