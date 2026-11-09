@@ -1,6 +1,8 @@
 <?php
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
+if ( ! function_exists( 'w2p_shortcode' ) ) :
+
 function w2p_shortcode($atts) {
     $atts = shortcode_atts(array(
         'type' => ''
@@ -139,5 +141,7 @@ function w2p_shortcode($atts) {
     return ob_get_clean();
 }
 add_shortcode('w2p', 'w2p_shortcode');
+
+endif; // function_exists w2p_shortcode
 
 // Add more shortcodes for other calculators as needed

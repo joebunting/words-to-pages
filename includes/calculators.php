@@ -1,6 +1,8 @@
 <?php
 if (!defined('ABSPATH')) exit; // Exit if accessed directly
 
+if ( ! function_exists( 'wpc_word_to_page_simple' ) ) :
+
 function wpc_word_to_page_simple($word_count, $words_per_page = 250) {
     return ceil($word_count / $words_per_page);
 }
@@ -62,3 +64,5 @@ function wpc_page_to_word_simple($page_count, $words_per_page = 250) {
 function wpc_count_words_in_text($text) {
     return str_word_count(strip_tags($text));
 }
+
+endif; // function_exists wpc_word_to_page_simple
